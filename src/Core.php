@@ -1,9 +1,9 @@
 <?php
 
-namespace Asko\Wptf;
+namespace Wptf;
 
 use Asko\Router\Router;
-use Asko\Wptf\Blocks\BaseBlock;
+use Wptf\Blocks\BaseBlock;
 
 class Core
 {

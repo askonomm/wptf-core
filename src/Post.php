@@ -1,6 +1,6 @@
 <?php
 
-namespace Asko\Wptf;
+namespace Wptf\Core;
 
 use WP_Post;
 

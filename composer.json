@@ -1,11 +1,11 @@
 {
-    "name": "asko/wptf-core",
+    "name": "wptf/core",
     "description": "Core of the WPTF (WordPress Theme Framework)",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Asko\\Wptf\\": "src/"
+            "Wptf\\Core\\": "src/"
         }
     },
     "autoload-dev": {

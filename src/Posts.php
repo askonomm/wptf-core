@@ -1,6 +1,6 @@
 <?php
 
-namespace Asko\Wptf;
+namespace Wptf\Core;
 
 use Asko\Collection\Collection;
 use WP_Post;

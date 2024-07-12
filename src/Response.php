@@ -1,6 +1,6 @@
 <?php
 
-namespace Asko\Wptf;
+namespace Wptf\Core;
 
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;

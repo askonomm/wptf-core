@@ -1,8 +1,8 @@
 <?php
 
-namespace Asko\Wptf\Blocks;
+namespace Wptf\Core\Blocks;
 
-use Asko\Wptf\Response;
+use Wptf\Core\Response;
 
 interface Block
 {

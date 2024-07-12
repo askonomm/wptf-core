@@ -1,6 +1,6 @@
 <?php
 
-use Asko\Wptf\Template;
+use Wptf\Core\Template;
 
 return [
     // WPTF
