@@ -93,7 +93,7 @@ class Template
     /**
      * @return void
      */
-    public static function language_switcher(): void
+    public static function wpml_language_switcher(): void
     {
         do_action('wpml_add_language_selector');
     }
@@ -101,7 +101,7 @@ class Template
     /**
      * @return string
      */
-    public static function current_language(): string
+    public static function wpml_current_language(): string
     {
         return apply_filters('wpml_current_language', null);
     }

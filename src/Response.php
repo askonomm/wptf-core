@@ -36,12 +36,15 @@ class Response
             ]);
 
             // Register template functions
-            if (file_exists(get_template_directory() . '/src/Config/twig.php')) {
-                $twig_fns = require get_template_directory() . '/src/Config/twig.php';
+            $config = require __DIR__ . '/Config/twig.php';
 
-                foreach($twig_fns as $name => $callable) {
-                    $twig->addFunction(new \Twig\TwigFunction($name, $callable));
-                }
+            if (file_exists(get_template_directory() . '/src/Config/twig.php')) {
+                $user_config = require get_template_directory() . '/src/Config/twig.php';
+                $config = [...$config, ...$user_config];
+            }
+
+            foreach($config as $name => $callable) {
+                $twig->addFunction(new \Twig\TwigFunction($name, $callable));
             }
 
             $self->status = $status;
