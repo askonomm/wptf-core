@@ -4,7 +4,7 @@ namespace Wptf\Core\Blocks;
 
 use Wptf\Core\Response;
 
-interface Block
+interface AcfBlock
 {
     /**
      * Render block

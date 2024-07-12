@@ -3,7 +3,7 @@
 namespace Wptf\Core;
 
 use Asko\Router\Router;
-use Wptf\Core\Blocks\BaseBlock;
+use Wptf\Core\Blocks\AcfBaseBlock;
 
 class Core
 {
@@ -21,6 +21,7 @@ class Core
         add_theme_support('align-wide');
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
+        add_theme_support('html5');
 
         // Register menus
         add_action('init', [$this, 'register_menus']);
@@ -30,41 +31,56 @@ class Core
     }
 
     /**
-     * Register blocks 
+     * Register blocks
      *
      * @return void
      */
     public function register_blocks(): void
     {
-        /** @var array<string, class-string<BaseBlock>> $blocks */
+        /** @var array<string, class-string<AcfBaseBlock>> $blocks */
         $blocks = require get_template_directory() . '/src/Config/blocks.php';
 
         foreach ($blocks as $name => $class) {
-            if (function_exists('acf_register_block_type')) {
-                $block_instance = new $class();
+            $block_instance = new $class();
 
-                acf_register_block_type([
-                    'name' => $name,
-                    'title' => $block_instance->title,
-                    'description' => $block_instance->description,
-                    'render_callback' => function (...$args) use ($block_instance) {
-                        $response = \call_user_func([$block_instance, 'render'], ...$args);
-
-                        if ($response instanceof Response) {
-                            echo $response->make();
-                        }
-                    },
-                    'category' => $block_instance->category,
-                    'icon' => $block_instance->icon,
-                    'keywords' => $block_instance->keywords,
-                    'supports' => $block_instance->supports,
-                    'enqueue_assets' => function () use ($block_instance) {
-                        wp_enqueue_style('theme-css', get_template_directory_uri() . '/assets/styles.min.css');
-                        call_user_func([$block_instance, 'assets']);
-                    }
-                ]);
+            // ACF block
+            if ($block_instance instanceof AcfBaseBlock) {
+                $this->register_acf_block($name, $block_instance);
             }
         }
+    }
+
+    /**
+     * @param string $name
+     * @param AcfBaseBlock $block
+     * @return void
+     */
+    private function register_acf_block(string $name, AcfBaseBlock $block): void
+    {
+        if (!function_exists('acf_register_block_type')) {
+            return;
+        }
+
+        acf_register_block_type([
+            'name' => $name,
+            'title' => $block->title,
+            'description' => $block->description,
+            'render_callback' => function (...$args) use ($block) {
+                $response = call_user_func([$block, 'render'], ...$args);
+
+                if ($response instanceof Response) {
+                    echo $response->make();
+                }
+            },
+            'category' => $block->category,
+            'icon' => $block->icon,
+            'keywords' => $block->keywords,
+            'supports' => $block->supports,
+            'enqueue_assets' => function () use ($block) {
+                wp_enqueue_style('theme-css', get_template_directory_uri() . '/assets/styles.min.css');
+                call_user_func([$block, 'assets']);
+            }
+        ]);
     }
 
     /**

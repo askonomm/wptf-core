@@ -4,7 +4,7 @@ namespace Wptf\Core\Blocks;
 
 use Wptf\Core\Response;
 
-class BaseBlock implements Block
+class AcfBaseBlock implements AcfBlock
 {
     /**
      * Block title
