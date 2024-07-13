@@ -12,7 +12,7 @@ use DateTime;
 class Post extends Model
 {
     protected static string $_table = "posts";
-    protected static string $_identifier = "id";
+    protected static string $_identifier = "ID";
 
     #[Column]
     public int $ID;
@@ -82,4 +82,9 @@ class Post extends Model
 
     #[Column]
     public int $comment_count;
+
+    public function content(): string
+    {
+        return apply_filters('the_content', $this->post_content);
+    }
 }
