@@ -15,7 +15,7 @@ class Post extends Model
     protected static string $_identifier = "id";
 
     #[Column]
-    public int $id;
+    public int $ID;
 
     #[Column]
     public int $post_author;
