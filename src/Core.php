@@ -14,6 +14,9 @@ class Core
      */
     public function init(): void
     {
+        // Stubs
+        $this->stubs();
+
         // Register blocks
         add_action('acf/init', [$this, 'register_blocks']);
 
@@ -28,6 +31,32 @@ class Core
 
         // Load routes and dispatch
         add_action('template_redirect', [$this, 'register_routes']);
+    }
+
+    /**
+     * @return void
+     */
+    private function stubs(): void
+    {
+        if (!defined('DB_HOST')) {
+            define('DB_HOST', 'localhost');
+        }
+
+        if (!defined('DB_NAME')) {
+            define('DB_NAME', '');
+        }
+
+        if (!defined('DB_USER')) {
+            define('DB_USER', '');
+        }
+
+        if (!defined('DB_PASSWORD')) {
+            define('DB_PASSWORD', '');
+        }
+
+        if (!defined('DB_PORT')) {
+            define('DB_PORT', 3306);
+        }
     }
 
     /**

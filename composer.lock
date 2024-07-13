@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a60576eb5a33a7973bf9b51da81571e4",
+    "content-hash": "8421d2a07dc5583dac43d7d1c80c6dcb",
     "packages": [
         {
             "name": "asko/collection",
@@ -52,6 +52,55 @@
                 "source": "https://github.com/askonomm/collection/tree/v1.0"
             },
             "time": "2024-06-23T00:14:24+00:00"
+        },
+        {
+            "name": "asko/orm",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/askonomm/orm.git",
+                "reference": "67f46658c62a3e80860ed8dd2e26a3d733f1041e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/askonomm/orm/zipball/67f46658c62a3e80860ed8dd2e26a3d733f1041e",
+                "reference": "67f46658c62a3e80860ed8dd2e26a3d733f1041e",
+                "shasum": ""
+            },
+            "require": {
+                "asko/collection": "^1.0",
+                "crell/fp": "^1.0",
+                "ext-pdo": "*",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.11",
+                "phpunit/phpunit": "^11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asko\\Orm\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Asko Nõmm",
+                    "email": "asko@nth.ee"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/askonomm/orm/issues",
+                "source": "https://github.com/askonomm/orm/tree/v1.3"
+            },
+            "time": "2024-07-13T13:07:48+00:00"
         },
         {
             "name": "asko/router",

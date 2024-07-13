@@ -5,45 +5,46 @@ namespace Wptf\Core;
 class Template
 {
     /**
-     * @param string $field
+     * @param mixed ...$args
      * @return string
      */
-    public static function get_field(string $field): string
+    public static function acf_get_field(...$args): string
     {
         if (!function_exists('get_field')) {
             return '';
         }
 
-        return get_field($field);
+        return get_field(...$args);
     }
 
     /**
+     * @param mixed ...$args
      * @return array
      */
-    public static function get_fields(): array
+    public static function acf_get_fields(...$args): array
     {
         if (!function_exists('get_fields')) {
             return [];
         }
 
-        return get_fields();
+        return get_fields(...$args);
     }
 
     /**
      * @return string
      */
-    public static function language_attributes(): string
+    public static function language_attributes($doctype = 'html'): string
     {
-        return get_language_attributes();
+        return get_language_attributes($doctype);
     }
 
     /**
      * @param string $show
      * @return string
      */
-    public static function bloginfo(string $show): string
+    public static function bloginfo(string $show, $filter = 'raw'): string
     {
-        return get_bloginfo($show);
+        return get_bloginfo($show, $filter);
     }
 
     /**
@@ -62,9 +63,9 @@ class Template
      * @param string $path
      * @return string
      */
-    public static function url(string $path): string
+    public static function url(string $path, $scheme = null): string
     {
-        return home_url($path);
+        return home_url($path, $scheme);
     }
 
     /**
