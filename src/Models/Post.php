@@ -21,10 +21,10 @@ class Post extends Model
     public int $post_author;
 
     #[Column]
-    public DateTime $post_date;
+    public string $post_date;
 
     #[Column]
-    public DateTime $post_date_gmt;
+    public string $post_date_gmt;
 
     #[Column]
     public string $post_content;
@@ -57,10 +57,10 @@ class Post extends Model
     public string $pinged;
 
     #[Column]
-    public DateTime $post_modified;
+    public string $post_modified;
 
     #[Column]
-    public DateTime $post_modified_gmt;
+    public string $post_modified_gmt;
 
     #[Column]
     public string $post_content_filtered;
