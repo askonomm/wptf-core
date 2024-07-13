@@ -50,7 +50,7 @@ class Template
     /**
      * @return string
      */
-    public static function tailwind(): string
+    public static function styles(): string
     {
         $url_to_theme = get_template_directory_uri();
 
@@ -107,26 +107,34 @@ class Template
         return apply_filters('wpml_current_language', null);
     }
 
-    public static function the_content(): void
-    {
-        the_content();
-    }
-
+    /**
+     * @return void
+     */
     public static function wp_title(): void
     {
         wp_title();
     }
 
+    /**
+     * @return void
+     */
     public static function wp_head(): void
     {
         wp_head();
     }
 
+    /**
+     * @return void
+     */
     public static function wp_footer(): void
     {
         wp_footer();
     }
 
+    /**
+     * @param string $text
+     * @return string
+     */
     public static function __(string $text): string
     {
         return __($text, 'wptf');

@@ -21,7 +21,7 @@
     }
   ],
   "require": {
-    "php": ">=8.2",
+    "php": ">=8.3",
     "asko/router": "^3.0",
     "asko/collection": "^1.0",
     "twig/twig": "^3.10",

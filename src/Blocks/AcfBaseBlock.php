@@ -56,7 +56,7 @@ class AcfBaseBlock implements AcfBlock
      */
     public function render(array $block, string $content, bool $is_preview, int $post_id): Response
     {
-        return Response::json([]);
+        return new Response;
     }
 
     /**

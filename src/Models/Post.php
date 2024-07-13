@@ -3,7 +3,6 @@
 namespace Wptf\Core\Models;
 
 use Asko\Orm\Column;
-use DateTime;
 
 /**
  * @template T
@@ -83,8 +82,23 @@ class Post extends Model
     #[Column]
     public int $comment_count;
 
+    /**
+     * Returns the content parsed by the_content filter
+     *
+     * @return string
+     */
     public function content(): string
     {
         return apply_filters('the_content', $this->post_content);
+    }
+
+    /**
+     * Returns the URL of the post
+     *
+     * @return string
+     */
+    public function url(): string
+    {
+        return get_permalink($this->ID);
     }
 }
