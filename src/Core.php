@@ -28,8 +28,23 @@ class Core
         // Register menus
         add_action('init', [$this, 'register_menus']);
 
+        // Enqueue scripts
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+
         // Load routes and dispatch
         add_action('template_redirect', [$this, 'register_routes']);
+    }
+
+    /**
+     * @return void
+     */
+    public function enqueue_scripts(): void
+    {
+        if (WP_DEBUG) {
+            wp_enqueue_style('theme-css', get_template_directory_uri() . '/assets/styles.min.css', ver: time());
+        } else {
+            wp_enqueue_style('theme-css', get_template_directory_uri() . '/assets/styles.min.css');
+        }
     }
 
     /**
@@ -55,6 +70,10 @@ class Core
 
         if (!defined('DB_PORT')) {
             define('DB_PORT', 3306);
+        }
+
+        if (!defined('WP_DEBUG')) {
+            define('WP_DEBUG', false);
         }
     }
 
