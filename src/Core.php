@@ -73,15 +73,25 @@ class Core
      */
     public function register_blocks(): void
     {
-        /** @var array<string, class-string<AcfBaseBlock>> $blocks */
+        /** @var array<string, array<class-string<AcfBaseBlock>|string>> $blocks */
         $blocks = require get_template_directory() . '/src/Config/blocks.php';
 
-        foreach ($blocks as $name => $class) {
-            $block_instance = new $class();
+        // ACF blocks
+        if (!empty($blocks['acf'])) {
+            foreach ($blocks['acf'] as $name => $class) {
+                $block_instance = new $class();
 
-            // ACF block
-            if ($block_instance instanceof AcfBaseBlock) {
-                $this->register_acf_block($name, $block_instance);
+                // ACF block
+                if ($block_instance instanceof AcfBaseBlock) {
+                    $this->register_acf_block($name, $block_instance);
+                }
+            }
+        }
+
+        // Gutenberg blocks
+        if (!empty($blocks['gutenberg'])) {
+            foreach ($blocks['gutenberg'] as $name) {
+                require_once get_template_directory() . "/src/Blocks/{$name}/{$name}.php";
             }
         }
     }

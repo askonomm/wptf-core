@@ -1,6 +1,6 @@
 {
   "name": "wptf/core",
-  "description": "Core of the WPTF (WordPress Theme Framework)",
+  "description": "Core of the WPTF",
   "type": "library",
   "license": "MIT",
   "autoload": {
@@ -16,8 +16,6 @@
   ],
   "require": {
     "php": ">=8.3",
-    "asko/collection": "^1.0",
-    "twig/twig": "^3.10",
-    "asko/orm": "^1.3"
+    "twig/twig": "^3.10"
   }
 }

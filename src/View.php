@@ -6,22 +6,26 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class View
+readonly class View
 {
+    public function __construct(private string $dir)
+    {
+    }
+
     /**
      * @param string $view
      * @param array $data
      * @return string
      * @throws \Exception
      */
-    public static function make(string $view, array $data = []): string
+    public function make(string $view, array $data = []): string
     {
-        if (!file_exists(get_template_directory() . '/src/Views/' . $view . '.twig')) {
+        if (!file_exists("{$this->dir}/{$view}.twig")) {
             throw new \Exception("View {$view} not found");
         }
 
         try {
-            $loader = new \Twig\Loader\FilesystemLoader(get_template_directory() . '/src/Views');
+            $loader = new \Twig\Loader\FilesystemLoader($this->dir);
             $twig = new \Twig\Environment($loader, [
                 'auto_reload' => true,
                 'debug' => true,
