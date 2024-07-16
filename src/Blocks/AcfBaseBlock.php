@@ -2,8 +2,6 @@
 
 namespace Wptf\Core\Blocks;
 
-use Wptf\Core\Response;
-
 class AcfBaseBlock implements AcfBlock
 {
     /**
@@ -52,11 +50,11 @@ class AcfBaseBlock implements AcfBlock
      * Render block
      *
      * @param array $block
-     * @return Response
+     * @return string
      */
-    public function render(array $block, string $content, bool $is_preview, int $post_id): Response
+    public function render(array $block, string $content, bool $is_preview, int $post_id): string
     {
-        return new Response;
+        return '';
     }
 
     /**
