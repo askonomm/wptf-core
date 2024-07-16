@@ -102,11 +102,7 @@ class Core
             'title' => $block->title,
             'description' => $block->description,
             'render_callback' => function (...$args) use ($block) {
-                $response = call_user_func([$block, 'render'], ...$args);
-
-                if ($response instanceof Response) {
-                    echo $response->make();
-                }
+                echo call_user_func([$block, 'render'], ...$args);
             },
             'category' => $block->category,
             'icon' => $block->icon,
