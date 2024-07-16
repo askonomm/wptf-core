@@ -8,12 +8,6 @@
       "Wptf\\Core\\": "src/"
     }
   },
-  "autoload-dev": {
-    "files": [
-      "vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php",
-      "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"
-    ]
-  },
   "authors": [
     {
       "name": "Asko Nõmm",
@@ -22,13 +16,8 @@
   ],
   "require": {
     "php": ">=8.3",
-    "asko/router": "^3.0",
     "asko/collection": "^1.0",
     "twig/twig": "^3.10",
     "asko/orm": "^1.3"
-  },
-  "require-dev": {
-    "php-stubs/acf-pro-stubs": "^6.2",
-    "php-stubs/wordpress-stubs": "^6.5"
   }
 }

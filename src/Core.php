@@ -20,19 +20,8 @@ class Core
         // Register blocks
         add_action('acf/init', [$this, 'register_blocks']);
 
-        // Theme support
-        add_theme_support('align-wide');
-        add_theme_support('post-thumbnails');
-        add_theme_support('title-tag');
-
-        // Register menus
-        add_action('init', [$this, 'register_menus']);
-
         // Enqueue scripts
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
-
-        // Load routes and dispatch
-        add_action('template_redirect', [$this, 'register_routes']);
     }
 
     /**
@@ -128,43 +117,5 @@ class Core
                 call_user_func([$block, 'assets']);
             }
         ]);
-    }
-
-    /**
-     * Register menus
-     *
-     * @return void
-     */
-    public function register_menus(): void
-    {
-        $config = require get_template_directory() . '/src/Config/general.php';
-
-        register_nav_menus($config['menus'] ?? []);
-    }
-
-    /**
-     * Load routes and dispatch
-     *
-     * @return void
-     */
-    public function register_routes(): void
-    {
-        $router = new Router();
-        $routes_fn = require get_template_directory() . '/src/Config/routes.php';
-        $routes_fn($router);
-
-        try {
-            $response = $router->dispatch();
-
-            if ($response instanceof Response) {
-                echo $response->make();
-            } else {
-                echo $response;
-            }
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
-
-        exit();
     }
 }

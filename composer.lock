@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8421d2a07dc5583dac43d7d1c80c6dcb",
+    "content-hash": "36ad38274fe72bee6359191acb9907b6",
     "packages": [
         {
             "name": "asko/collection",
@@ -101,49 +101,6 @@
                 "source": "https://github.com/askonomm/orm/tree/v1.3"
             },
             "time": "2024-07-13T13:07:48+00:00"
-        },
-        {
-            "name": "asko/router",
-            "version": "v3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/askonomm/router.git",
-                "reference": "38f9e0df24da5ecca5e6b43560f6230ed3d8bd07"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/askonomm/router/zipball/38f9e0df24da5ecca5e6b43560f6230ed3d8bd07",
-                "reference": "38f9e0df24da5ecca5e6b43560f6230ed3d8bd07",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Asko\\Router\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Asko Nõmm",
-                    "email": "asko@repl.ee"
-                }
-            ],
-            "description": "A minimal PHP router with configuration-free dependency injection",
-            "support": {
-                "issues": "https://github.com/askonomm/router/issues",
-                "source": "https://github.com/askonomm/router/tree/v3.0"
-            },
-            "time": "2024-05-30T22:24:28+00:00"
         },
         {
             "name": "crell/fp",
@@ -601,107 +558,14 @@
             "time": "2024-05-16T10:04:27+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "php-stubs/acf-pro-stubs",
-            "version": "v6.2.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-stubs/acf-pro-stubs.git",
-                "reference": "ec36332a1211f8c0231ae8221994f38033232fa0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/acf-pro-stubs/zipball/ec36332a1211f8c0231ae8221994f38033232fa0",
-                "reference": "ec36332a1211f8c0231ae8221994f38033232fa0",
-                "shasum": ""
-            },
-            "require": {
-                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0"
-            },
-            "require-dev": {
-                "php": "~7.1 || ^8.0",
-                "php-stubs/generator": "^0.8",
-                "phpdocumentor/reflection-docblock": "^5.3"
-            },
-            "suggest": {
-                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
-                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Advanced Custom Fields PRO stubs for static analysis.",
-            "homepage": "https://github.com/php-stubs/acf-pro-stubs",
-            "keywords": [
-                "PHPStan",
-                "acf",
-                "static analysis",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/php-stubs/acf-pro-stubs/issues",
-                "source": "https://github.com/php-stubs/acf-pro-stubs/tree/v6.2.7"
-            },
-            "time": "2024-03-11T09:22:20+00:00"
-        },
-        {
-            "name": "php-stubs/wordpress-stubs",
-            "version": "v6.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-stubs/wordpress-stubs.git",
-                "reference": "e611a83292d02055a25f83291a98fadd0c21e092"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/e611a83292d02055a25f83291a98fadd0c21e092",
-                "reference": "e611a83292d02055a25f83291a98fadd0c21e092",
-                "shasum": ""
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-                "nikic/php-parser": "^4.13",
-                "php": "^7.4 || ~8.0.0",
-                "php-stubs/generator": "^0.8.3",
-                "phpdocumentor/reflection-docblock": "5.3",
-                "phpstan/phpstan": "^1.10.49",
-                "phpunit/phpunit": "^9.5",
-                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.11"
-            },
-            "suggest": {
-                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
-                "symfony/polyfill-php80": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
-                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "WordPress function and class declaration stubs for static analysis.",
-            "homepage": "https://github.com/php-stubs/wordpress-stubs",
-            "keywords": [
-                "PHPStan",
-                "static analysis",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
-                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.5.3"
-            },
-            "time": "2024-05-08T02:12:31+00:00"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2"
+        "php": ">=8.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
