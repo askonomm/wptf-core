@@ -14,7 +14,8 @@ class Core
     public function init(): void
     {
         // Register blocks
-        add_action('acf/init', [$this, 'register_blocks']);
+        add_action('acf/init', [$this, 'register_acf_blocks']);
+        add_action('init', [$this, 'register_blocks']);
     }
 
     /**
@@ -22,7 +23,7 @@ class Core
      *
      * @return void
      */
-    public function register_blocks(): void
+    public function register_acf_blocks(): void
     {
         /** @var array<string, array<class-string<AcfBaseBlock>|string>> $blocks */
         $blocks = require get_template_directory() . '/src/Config/blocks.php';
@@ -37,13 +38,10 @@ class Core
                     $this->register_acf_block($name, $block_instance);
                 }
             }
-        }
 
-        // Gutenberg blocks
-        if (!empty($blocks['gutenberg'])) {
-            foreach ($blocks['gutenberg'] as $name) {
-                require_once get_template_directory() . "/src/Blocks/{$name}/{$name}.php";
-            }
+            add_action('enqueue_block_assets', function () {
+                wp_enqueue_style('tailwind-css', get_template_directory_uri() . '/assets/styles.min.css');
+            });
         }
     }
 
@@ -74,5 +72,21 @@ class Core
                 call_user_func([$block, 'assets']);
             }
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    public function register_blocks(): void
+    {
+        /** @var array<string, array<class-string<AcfBaseBlock>|string>> $blocks */
+        $blocks = require get_template_directory() . '/src/Config/blocks.php';
+
+        // Gutenberg blocks
+        if (!empty($blocks['gutenberg'])) {
+            foreach ($blocks['gutenberg'] as $name) {
+                require_once get_template_directory() . "/src/Blocks/{$name}/{$name}.php";
+            }
+        }
     }
 }
