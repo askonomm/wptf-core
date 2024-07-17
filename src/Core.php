@@ -13,9 +13,11 @@ class Core
      */
     public function init(): void
     {
-        // Register blocks
+        // Register ACF blocks
         add_action('acf/init', [$this, 'register_acf_blocks']);
-        add_action('init', [$this, 'register_blocks']);
+
+        // Register Gutenberg blocks
+        $this->register_blocks();
     }
 
     /**
