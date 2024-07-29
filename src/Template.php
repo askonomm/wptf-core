@@ -8,7 +8,7 @@ class Template
      * @param mixed ...$args
      * @return string
      */
-    public static function acf_get_field(...$args): string
+    public static function acf_get_field(...$args): mixed
     {
         if (!function_exists('get_field')) {
             return '';
