@@ -2,8 +2,6 @@
 
 namespace Wptf\Core;
 
-use Wptf\Core\Blocks\AcfBaseBlock;
-
 class Core
 {
 	/**
@@ -13,62 +11,8 @@ class Core
 	 */
 	public function init(): void
 	{
-		// Register ACF blocks
-		add_action('acf/init', [$this, 'register_acf_blocks']);
-
-		// Register Gutenberg blocks
+		// Register blocks
 		$this->register_blocks();
-	}
-
-	/**
-	 * Register blocks
-	 *
-	 * @return void
-	 */
-	public function register_acf_blocks(): void
-	{
-		/** @var array<string, array<class-string<AcfBaseBlock>|string>> $blocks */
-		$blocks = require get_template_directory() . '/src/Config/blocks.php';
-
-		// ACF blocks
-		if (!empty($blocks['acf'])) {
-			foreach ($blocks['acf'] as $name => $class) {
-				$block_instance = new $class();
-
-				// ACF block
-				if ($block_instance instanceof AcfBaseBlock) {
-					$this->register_acf_block($name, $block_instance);
-				}
-			}
-		}
-	}
-
-	/**
-	 * @param string $name
-	 * @param AcfBaseBlock $block
-	 * @return void
-	 */
-	private function register_acf_block(string $name, AcfBaseBlock $block): void
-	{
-		if (!function_exists('acf_register_block_type')) {
-			return;
-		}
-
-		acf_register_block_type([
-			'name' => $name,
-			'title' => $block->title,
-			'description' => $block->description,
-			'render_callback' => function (...$args) use ($block) {
-				echo call_user_func([$block, 'render'], ...$args);
-			},
-			'category' => $block->category,
-			'icon' => $block->icon,
-			'keywords' => $block->keywords,
-			'supports' => $block->supports,
-			'enqueue_assets' => function () use ($block) {
-				call_user_func([$block, 'assets']);
-			}
-		]);
 	}
 
 	/**
@@ -76,14 +20,24 @@ class Core
 	 */
 	public function register_blocks(): void
 	{
-		/** @var array<string, array<class-string<AcfBaseBlock>|string>> $blocks */
-		$blocks = require get_template_directory() . '/src/Config/blocks.php';
+		/** @var array $blocks */
+		$block_paths = glob(get_template_directory() . '/src/Blocks/*', GLOB_ONLYDIR);
 
-		// Gutenberg blocks
-		if (!empty($blocks['gutenberg'])) {
-			foreach ($blocks['gutenberg'] as $name) {
+		if (!empty($block_paths)) {
+			foreach ($block_paths as $path) {
+				// Block name from directory name
+				$name = basename($path);
+
+				// Gutenberg block
 				if (file_exists(get_template_directory() . "/src/Blocks/{$name}/{$name}.php")) {
 					require_once get_template_directory() . "/src/Blocks/{$name}/{$name}.php";
+				}
+
+				// ACF block
+				if (file_exists(get_template_directory() . "/src/Blocks/{$name}/block.json")) {
+					add_action('init', function() use($name) {
+						register_block_type(get_template_directory() . "/src/Blocks/{$name}");
+					});
 				}
 			}
 		}

@@ -8,7 +8,7 @@ class Template
      * @param mixed ...$args
      * @return string
      */
-    public static function acf_get_field(...$args): mixed
+    public static function acf_get_field(mixed ...$args): mixed
     {
         if (!function_exists('get_field')) {
             return '';
@@ -21,7 +21,7 @@ class Template
      * @param mixed ...$args
      * @return array
      */
-    public static function acf_get_fields(...$args): array
+    public static function acf_get_fields(mixed ...$args): array
     {
         if (!function_exists('get_fields')) {
             return [];
@@ -33,7 +33,7 @@ class Template
     /**
      * @return string
      */
-    public static function language_attributes($doctype = 'html'): string
+    public static function language_attributes(string $doctype = 'html'): string
     {
         return get_language_attributes($doctype);
     }
@@ -42,28 +42,16 @@ class Template
      * @param string $show
      * @return string
      */
-    public static function bloginfo(string $show, $filter = 'raw'): string
+    public static function bloginfo(string $show, string $filter = 'raw'): string
     {
         return get_bloginfo($show, $filter);
-    }
-
-    /**
-     * @return string
-     */
-    public static function styles(): string
-    {
-        $url_to_theme = get_template_directory_uri();
-
-        return <<<HTML
-            <link href="{$url_to_theme}/assets/styles.min.css" rel="stylesheet">
-        HTML;
     }
 
     /**
      * @param string $path
      * @return string
      */
-    public static function url(string $path, $scheme = null): string
+    public static function url(string $path, string|null $scheme = null): string
     {
         return home_url($path, $scheme);
     }
@@ -86,7 +74,7 @@ class Template
      * @param $args
      * @return void
      */
-    public static function wp_nav_menu($args): void
+    public static function wp_nav_menu(array $args): void
     {
         wp_nav_menu($args[0] ?? []);
     }
